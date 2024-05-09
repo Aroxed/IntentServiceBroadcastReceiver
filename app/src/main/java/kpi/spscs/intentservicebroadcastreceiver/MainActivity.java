@@ -2,6 +2,7 @@ package kpi.spscs.intentservicebroadcastreceiver;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
@@ -13,10 +14,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         IntentFilter filter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
-        SimpleBroadcastReceiver receiver = new SimpleBroadcastReceiver();
-        registerReceiver(receiver, filter);
+        SimpleBroadcastReceiver receiver1 = new SimpleBroadcastReceiver();
+        registerReceiver(receiver1, filter);
+        BatteryLevelReceiver receiver2 = new BatteryLevelReceiver();
+        registerReceiver(receiver2, filter);
 
-        //startService(new Intent(this, MyService.class));
+        startService(new Intent(this, SimpleService.class));
 
         //difference between service and intent service
         //broadcast receiver and it's applications
